@@ -1,13 +1,15 @@
 # HandTracked3DGripper
 
 A computer-vision-controlled robotic gripper project that tracks hand motion in real time and maps finger bend data to a servo-driven gripper using Python, MediaPipe, OpenCV, and Arduino.
+assets/videos/tracking-demo.mp4
+![gripper](assets/images/gripper.jpg)
 
 ## Overview
 
 This project uses a webcam to detect hand landmarks with MediaPipe, calculates a finger bend angle from the tracked hand, and sends that angle over serial to an Arduino Nano. The Arduino then uses the incoming value to drive a micro servo attached to a 3D-printed gripper.
 
 The goal of the project was to combine computer vision, hardware control, and physical prototyping into a working hand-controlled robotic gripper system.
-
+![handTracking](assets/images/hand.png)
 ## Features
 
 - Real-time hand tracking with MediaPipe
@@ -15,6 +17,11 @@ The goal of the project was to combine computer vision, hardware control, and ph
 - Finger bend angle estimation
 - Optional serial communication to Arduino
 - Servo-driven gripper control
+
+## Video Demos
+
+- `assets/videos/tracking-demo.mp4`
+- `assets/videos/boat-demo.mp4`
 
 ## Hardware Used
 
