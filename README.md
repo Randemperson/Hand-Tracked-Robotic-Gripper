@@ -15,15 +15,13 @@ The goal of the project was to combine computer vision, hardware control, and ph
 - Finger bend angle estimation
 - Optional serial communication to Arduino
 - Servo-driven gripper control
-- Test mode for running vision without Arduino connected
 
 ## Hardware Used
 
 - Arduino Nano
-- Micro servo
+- Fixed Rotation Micro servo (external power source of 4 AA batteries or 4.5-6V equivalent needed)
 - 3D-printed gripper
 - Webcam
-- USB connection to computer
 
 ## Software Used
 
@@ -54,42 +52,61 @@ HandTracked3DGripper/
 │  └─ videos/
 └─ docs/
 ```
-Installation
-Clone the repository.
-Create and activate a virtual environment.
-Install dependencies:
+
+## Installation
+
+1. Clone the repository
+2. Create a venv:
+```powershell
+py -3.11 -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+3. Install dependencies:
+```powershell
 pip install -r requirements.txt
-Download the MediaPipe hand landmarker model and place it in:
-models/hand_landmarker.task
-Running the Project
-Run the Python program:
+```
 
+## Running the Project
+
+Run the program with:
+```powershell
 python main.py
+```
 When prompted:
+- Enter test to run only the hand tracking visualization.
+- Enter arduino to send bend-angle data to the Arduino.
 
-choose test to run only the hand tracker
-choose arduino to also send bend-angle data to the Arduino
-Arduino Code
-The Arduino sketch is located in:
+## Arduino Setup
 
+Upload the arduino sketch from:
+```text
 arduino/gripper_servo_control/gripper_servo_control.ino
-It receives a bend angle over serial at 9600 baud and writes that angle to the servo.
+```
+Make sure:
+- Your Arduino is connected to the correct COM port.
+- The baud rate matches 9600.
+- Your servo signal wire is connected to pin 9 unless you changed it in the sketch.
 
-Challenges
-One of the biggest challenges in this project was working through the physical prototyping side alongside the software. I had to 3D print the gripper and refine its design so it would actually function as intended, which took trial and error. I also had to learn how to properly connect and control a micro servo with an Arduino Nano, which meant figuring out wiring, power, and communication details that were new to me. Another major challenge was experimenting with resin 3D printing silicone components, which took several days of testing and adjustment before I could get usable results. These challenges pushed me to problem-solve across both hardware and software, and they taught me how much persistence and iteration real engineering projects require.
+## Challenges
 
-Future Improvements
-Improve fist detection and full-hand gesture recognition
-Track individual gripper joints
-Add more reliable angle smoothing
-Calibrate servo motion to match real finger movement more closely
-Expand to more advanced robotic hand control
-Requirements
+One of the biggest challenges in this project was working through the physical prototyping side alongside the software. I had to 3D print the gripper and refine its design so it would actually function as intended, which took trial and error. I also had to learn how to properly connect and control a micro servo with an Arduino Nano, which meant figuring out wiring, power, and communication details that were new to me. Another major challenge was experimenting with resin 3D printing silicone components (40A), which was a surprisingly long process and my PI told me my parts were the first to be successful in a while. These challenges pushed me to problem-solve across both hardware and software, and they taught me how much persistence and iteration real engineering projects require.
+
+## Future Improvements
+- Improve fist detection and full-hand gesture recognition
+- Track gripper joints for a closed-feedback loop
+- Add more reliable angle smoothing
+- More advanced robotic hand control
+- Robotic arm
+- World domination
+
+## Requirements
+
+```txt
 opencv-python>=4.10.0
 mediapipe>=0.10.14
 numpy>=1.26.0
 pyserial>=3.5
+```
 
-Author
-Your Name Here
-
+## Author
+Alfred Tang
